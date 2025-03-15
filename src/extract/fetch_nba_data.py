@@ -10,7 +10,6 @@ selected_season_id = "2020-21"
 # Connect to MongoDB
 client = MongoClient("mongodb://localhost:27017/")
 db = client["nba_database"]
-raw_collection = db["raw_nba_data"]
 
 # Get all NBA teams
 nba_teams = teams.get_teams()
@@ -18,6 +17,11 @@ nba_teams = teams.get_teams()
 for team in nba_teams:
     team_id = team['id']
     team_name = team['full_name']
+
+    # create new db collection for team 
+    collection_name = f"{team_name}_db"
+    team_collection = db[collection_name]
+    print(f"Created {collection_name}")
 
     print(f"Fetching data for {team_name}...")
 
@@ -39,7 +43,7 @@ for team in nba_teams:
             gamelog_df = gamelog.get_data_frames()[0]
 
             # Store raw player stats in MongoDB
-            raw_collection.insert_one({
+            team_collection.insert_one({
                 "player_id": player_id,
                 "player_name": player_name,
                 "team_id": team_id,
@@ -53,7 +57,7 @@ for team in nba_teams:
         except Exception as e:
             print(f"Skipping {player_name} due to error: {e}")
 
-        # Sleep to avoid rate limiting
+        # to avoid getting blocked by the nba api
         time.sleep(1.5)
 
 print("All NBA data saved to MongoDB.")
