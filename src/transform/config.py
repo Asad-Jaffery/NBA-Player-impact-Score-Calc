@@ -1,3 +1,5 @@
+from pymongo import MongoClient
+
 STAT_WEIGHTS = {
     'MIN': 0.05,
     'FG_PCT': 0.15,
@@ -11,3 +13,10 @@ STAT_WEIGHTS = {
 }
 
 stats_to_count = ['Player_ID','MIN','FG_PCT','REB','AST','PTS','STL','BLK','TOV','PLUS_MINUS']
+
+
+client = MongoClient("mongodb://localhost:27017/")
+db = client["nba_database"]
+averages_db = client["nba_averages"]
+
+
