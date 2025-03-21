@@ -9,3 +9,5 @@ STAT_WEIGHTS = {
     'TOV': -0.05,
     'PLUS_MINUS': 0.25
 }
+
+stats_to_count = ['Player_ID','MIN','FG_PCT','REB','AST','PTS','STL','BLK','TOV','PLUS_MINUS']

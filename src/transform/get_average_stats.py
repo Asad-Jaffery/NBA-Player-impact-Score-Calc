@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from nba_api.stats.static import teams
 import pandas as pd
+from config import stats_to_count
 
 
 # connect to mongo
@@ -8,10 +9,6 @@ client = MongoClient("mongodb://localhost:27017/")
 db = client["nba_database"]
 
 nba_teams = teams.get_teams()
-
-
-stats_to_count = ['Player_ID','MIN','FG_PCT','REB','AST','PTS','STL','BLK','TOV','PLUS_MINUS']
-
 
 for team in nba_teams:
     team_name = team['full_name']
@@ -36,8 +33,6 @@ for team in nba_teams:
         else:
             all_game_log_df = pd.DataFrame()
         player_averages = pd.DataFrame(all_game_log_df).mean().to_dict()
-        
-
         
         average_collection.insert_one({
             "player_id": player["player_id"],
