@@ -14,6 +14,8 @@ STAT_WEIGHTS = {
 
 stats_to_count = ['Player_ID','MIN','FG_PCT','REB','AST','PTS','STL','BLK','TOV','PLUS_MINUS']
 
+positive_stats = ['MIN','FG_PCT','REB','AST','PTS','STL','BLK']
+
 
 client = MongoClient("mongodb://localhost:27017/")
 db = client["nba_database"]
