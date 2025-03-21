@@ -30,6 +30,8 @@ for collection_name in averages_db.list_collection_names():
 
 # Display results
 print("Minimum values for each stat:")
+del all_stats_min["Player_ID"]
+del all_stats_max["Player_ID"]
 for stat, value in all_stats_min.items():
     print(f"{stat}: {value}")
 
