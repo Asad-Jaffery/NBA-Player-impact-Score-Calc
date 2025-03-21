@@ -7,6 +7,8 @@ from config import stats_to_count
 # connect to mongo
 client = MongoClient("mongodb://localhost:27017/")
 db = client["nba_database"]
+average_db = client["nba_averages"]
+
 
 nba_teams = teams.get_teams()
 
@@ -15,7 +17,7 @@ for team in nba_teams:
 
     # create new db for each team
     collection_name = f"{team_name}_averages"
-    average_collection = db[collection_name]
+    average_collection = average_db[collection_name]
     print(f"Created {collection_name}")
 
     # get the current team's db
