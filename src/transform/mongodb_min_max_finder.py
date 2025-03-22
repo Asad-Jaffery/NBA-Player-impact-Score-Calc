@@ -1,8 +1,8 @@
 from pymongo import MongoClient
-import config
+import transform.config
 
-db = config.db
-averages_db = config.averages_db
+db = transform.config.db
+averages_db = transform.config.averages_db
 
 all_stats_min = {}
 all_stats_max = {}
@@ -28,7 +28,6 @@ for collection_name in averages_db.list_collection_names():
                 all_stats_min[stat_name] = min(all_stats_min[stat_name], stat_value)
                 all_stats_max[stat_name] = max(all_stats_max[stat_name], stat_value)
 
-# Display results
 del all_stats_min["Player_ID"]
 del all_stats_max["Player_ID"]
 
