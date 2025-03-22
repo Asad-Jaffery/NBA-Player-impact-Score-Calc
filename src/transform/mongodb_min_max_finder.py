@@ -1,8 +1,8 @@
 from pymongo import MongoClient
-import transform.config
+import config
 
-db = transform.config.db
-averages_db = transform.config.averages_db
+db = config.db
+averages_db = config.averages_db
 
 all_stats_min = {}
 all_stats_max = {}

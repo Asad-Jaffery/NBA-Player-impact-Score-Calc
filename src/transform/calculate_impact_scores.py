@@ -1,22 +1,20 @@
 
-from pymongo import MongoClient
 from nba_api.stats.static import teams
-from transform.mongodb_min_max_finder import all_stats_max, all_stats_min
-import transform.config
+from mongodb_min_max_finder import all_stats_max, all_stats_min
+import config
 
-db = transform.config.db
-averages_db = transform.config.averages_db
-stat_weight = transform.config.STAT_WEIGHTS
+db = config.db
+averages_db = config.averages_db
+stat_weight = config.STAT_WEIGHTS
 
 def getPlayerImpactScore(player): # will get the impact score of a player
     
     if not player["avg_stats"]:
         return 0
     
-
     normalized_stats = {} # normalize the player stats (on a 0 - 100 scale)
 
-    for stat in transform.config.positive_stats:
+    for stat in config.positive_stats:
         if player["avg_stats"][stat] == 0:
             normalized_stats[stat] = 0
         else:
