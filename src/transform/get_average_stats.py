@@ -1,4 +1,3 @@
-from pymongo import MongoClient
 from nba_api.stats.static import teams
 import pandas as pd
 import config
@@ -6,7 +5,7 @@ import config
 db = config.db
 averages_db = config.averages_db
 
-nba_teams = teams.get_teams()
+nba_teams = config.nba_teams 
 
 for team in nba_teams:
     team_name = team['full_name']

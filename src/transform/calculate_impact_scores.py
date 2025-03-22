@@ -1,5 +1,4 @@
 
-from nba_api.stats.static import teams
 from mongodb_min_max_finder import all_stats_max, all_stats_min
 import config
 
