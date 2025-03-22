@@ -12,6 +12,7 @@ for team in nba_teams:
     team_name = team['full_name']
 
     # create new db for each team
+    
     collection_name = f"{team_name}_averages"
     average_collection = averages_db[collection_name]
     print(f"Created {collection_name}")
@@ -39,3 +40,5 @@ for team in nba_teams:
             "team_name": player["team_name"],
             "avg_stats": player_averages
             })
+        
+
