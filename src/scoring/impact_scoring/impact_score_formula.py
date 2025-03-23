@@ -1,6 +1,11 @@
 
-from mongodb_min_max_finder import all_stats_max, all_stats_min
-import config
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+
+import transform.config as config
+from transform.mongodb_min_max_finder import all_stats_max, all_stats_min
 
 db = config.db
 averages_db = config.averages_db
