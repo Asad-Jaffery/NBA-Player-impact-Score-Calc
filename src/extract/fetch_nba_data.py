@@ -21,16 +21,16 @@ for team in nba_teams:
     # create new db collection for team 
     collection_name = f"{team_name}_db"
     team_collection = db[collection_name]
-    print(f"Created {collection_name}", flush=True)
+    print(f"Created {collection_name}")
 
-    print(f"Fetching data for {team_name}...", flush=True)
+    print(f"Fetching data for {team_name}...")
 
     # Get the team roster
     try:
         roster = commonteamroster.CommonTeamRoster(team_id=team_id, season=selected_season_id)
         roster_df = roster.get_data_frames()[0]
     except Exception as e:
-        print(f"Skipping {team_name} due to error: {e}", flush=True)
+        print(f"Skipping {team_name} due to error: {e}")
         continue
 
     for player in roster_df.itertuples(index=False):
@@ -52,12 +52,12 @@ for team in nba_teams:
                 "game_logs": gamelog_df.to_dict(orient="records")
             })
 
-            print(f"Stored data for {player_name} ({team_name})", flush=True)
+            print(f"Stored data for {player_name} ({team_name})")
 
         except Exception as e:
-            print(f"Skipping {player_name} due to error: {e}", flush=True)
+            print(f"Skipping {player_name} due to error: {e}")
 
         # to avoid getting blocked by the nba api
-        time.sleep(0.3)
+        time.sleep(0.2)
 
-print("All NBA data saved to MongoDB", flush=True)
+print("All NBA data saved to MongoDB")
