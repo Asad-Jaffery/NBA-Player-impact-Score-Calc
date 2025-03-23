@@ -1,28 +1,25 @@
+from src.transform import config
+from src.transform import mongodb_min_max_finder
 
-import sys
-import os
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-
-import transform.config as config
-from transform.mongodb_min_max_finder import all_stats_max, all_stats_min
+all_stats_min, all_stats_max = mongodb_min_max_finder.all_stats_max, mongodb_min_max_finder.all_stats_min
 
 db = config.db
 averages_db = config.averages_db
 stat_weight = config.STAT_WEIGHTS
 
-def getPlayerImpactScore(player): # will get the impact score of a player
-    
+def getPlayerImpactScore(player): 
+    """Calculates the Impact score of a player based on their average stats"""
     if not player["avg_stats"]:
         return 0
     
-    normalized_stats = {} # normalize the player stats (on a 0 - 100 scale)
+    # normalize the player stats (on a 0 - 100 scale)
+    normalized_stats = {} 
 
     for stat in config.positive_stats:
         if player["avg_stats"][stat] == 0:
             normalized_stats[stat] = 0
         else:
-            normalized_stats[stat] = 100 * (player["avg_stats"][stat] - all_stats_min[stat]) / (all_stats_max[stat] -  all_stats_min[stat])
+            normalized_stats[stat] = 100 * (player["avg_stats"][stat] - all_stats_min[stat]) / (all_stats_max[stat] - all_stats_min[stat])
 
     normalized_stats['TOV'] = 100 * (all_stats_max['TOV'] - player["avg_stats"]['TOV']) / (all_stats_max['TOV'] - all_stats_min['TOV'])
 

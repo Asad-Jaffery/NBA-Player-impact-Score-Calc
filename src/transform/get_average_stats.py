@@ -1,6 +1,6 @@
-from nba_api.stats.static import teams
 import pandas as pd
-import config
+import src.transform.config as config
+import time
 
 db = config.db
 averages_db = config.averages_db
@@ -11,7 +11,6 @@ for team in nba_teams:
     team_name = team['full_name']
 
     # create new db for each team
-    
     collection_name = f"{team_name}_averages"
     average_collection = averages_db[collection_name]
     print(f"Created {collection_name}")
@@ -21,7 +20,7 @@ for team in nba_teams:
 
     # for each player in the current team's db, get the averages and add it 
     for player in curr_team_collection.find({}):
-        print(f"filling {average_collection}...")
+        print(f"filling {team_name}'s average collection...")
 
         all_game_logs = []
         all_game_logs.extend(player["game_logs"])
@@ -39,5 +38,8 @@ for team in nba_teams:
             "team_name": player["team_name"],
             "avg_stats": player_averages
             })
+        
+        print(f"Stored averages for {player['player_name']} ({team_name})")
+        time.sleep(0.2)
         
 
