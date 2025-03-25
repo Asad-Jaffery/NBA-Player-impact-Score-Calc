@@ -1,7 +1,7 @@
 from src.transform import config
 from src.transform import mongodb_min_max_finder
 
-all_stats_min, all_stats_max = mongodb_min_max_finder.all_stats_max, mongodb_min_max_finder.all_stats_min
+all_stats_min, all_stats_max = mongodb_min_max_finder.all_stats_min, mongodb_min_max_finder.all_stats_max
 
 db = config.db
 averages_db = config.averages_db
