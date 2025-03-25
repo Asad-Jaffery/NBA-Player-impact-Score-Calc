@@ -19,8 +19,8 @@ for team in nba_teams:
     curr_team_collection = db[f"{team_name}_db"]
 
     # for each player in the current team's db, get the averages and add it 
+    print(f"filling {team_name}'s average collection...")
     for player in curr_team_collection.find({}):
-        print(f"filling {team_name}'s average collection...")
 
         all_game_logs = []
         all_game_logs.extend(player["game_logs"])
@@ -40,6 +40,6 @@ for team in nba_teams:
             })
         
         print(f"Stored averages for {player['player_name']} ({team_name})")
-        time.sleep(0.2)
+        time.sleep(0.1)
         
 
