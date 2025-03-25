@@ -58,6 +58,6 @@ for team in nba_teams:
             print(f"Skipping {player_name} due to error: {e}")
 
         # to avoid getting blocked by the nba api
-        time.sleep(0.2)
+        time.sleep(0.1)
 
 print("All NBA data saved to MongoDB")
