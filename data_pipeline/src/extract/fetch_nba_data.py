@@ -14,6 +14,7 @@ db = client["nba_database"]
 # Get all NBA teams
 nba_teams = teams.get_teams()
 
+
 for team in nba_teams:
     team_id = team['id']
     team_name = team['full_name']
