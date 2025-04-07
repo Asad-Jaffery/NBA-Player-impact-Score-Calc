@@ -1,5 +1,8 @@
 from pymongo import MongoClient
 from nba_api.stats.static import teams
+from dotenv import load_dotenv
+
+import os
 
 
 STAT_WEIGHTS = {
@@ -18,7 +21,12 @@ stats_to_count = ['Player_ID','MIN','FG_PCT','REB','AST','PTS','STL','BLK','TOV'
 
 positive_stats = ['MIN','FG_PCT','REB','AST','PTS','STL','BLK']
 
-client = MongoClient("mongodb://localhost:27017/")
+load_dotenv()  
+from dotenv import load_dotenv
+mongo_uri = os.getenv("MONGO_URI")
+client = MongoClient(mongo_uri)
+
+
 db = client["nba_database"]
 averages_db = client["nba_averages"]
 nba_teams = teams.get_teams()

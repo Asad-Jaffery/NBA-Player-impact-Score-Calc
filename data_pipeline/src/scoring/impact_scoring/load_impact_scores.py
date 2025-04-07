@@ -1,8 +1,13 @@
 import time
 from pymongo import MongoClient
 from src.scoring.impact_scoring.impact_score_formula import getPlayerImpactScore
+import os
+from dotenv import load_dotenv
 
-client = MongoClient("mongodb://localhost:27017/")
+load_dotenv() 
+
+mongo_uri = os.getenv("MONGO_URI")
+client = MongoClient(mongo_uri)
 
 scores = client["scores"]
 averages_db = client["nba_averages"]

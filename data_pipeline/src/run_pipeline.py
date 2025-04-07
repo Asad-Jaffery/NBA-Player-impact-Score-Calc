@@ -1,14 +1,18 @@
 import subprocess
 from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
 
-client = MongoClient("mongodb://localhost:27017/")
+load_dotenv() 
+mongo_uri = os.getenv("MONGO_URI")
+client = MongoClient(mongo_uri)
 
-def run_script(module_name):
+def run_script(module):
     """Helper function to run a module using `-m` to handle imports properly."""
     try:
-        subprocess.run(["python", "-m", module_name], check=True)
+        subprocess.run(["python", "-m", module], check=True)
     except subprocess.CalledProcessError as e:
-        print(f"Error running {module_name}: {e}")
+        print(f"Error running {module}: {e}")
         exit(1)  # Exit if any script fails
 
 if __name__ == "__main__":
