@@ -7,7 +7,7 @@ selected_season_id = globals.selected_season_id
 db = globals.db
 nba_teams = globals.nba_teams
 
-for team in nba_teams[:2]:
+for team in nba_teams: # edit here for demo!!
     team_id = team['id']
     team_name = team['full_name']
 

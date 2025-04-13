@@ -9,7 +9,7 @@ nba_teams = globals.nba_teams
 stats_to_count = globals.stats_to_count
 
 
-for team in nba_teams:
+for team in nba_teams: # edit here for demo!!
     team_name = team['full_name']
 
     # create new db for each team
