@@ -2,7 +2,6 @@ import pandas as pd
 import time
 import globals
 
-
 # load global variables
 db = globals.db
 averages_db = globals.averages_db
