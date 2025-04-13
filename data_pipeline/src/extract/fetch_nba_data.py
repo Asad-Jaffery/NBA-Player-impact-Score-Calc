@@ -1,28 +1,13 @@
 from nba_api.stats.endpoints import playergamelog, commonteamroster
-from nba_api.stats.static import teams
-from pymongo import MongoClient
-from dotenv import load_dotenv
 import time 
-import os
+import globals
 
-load_dotenv() 
+# load global variables
+selected_season_id = globals.selected_season_id
+db = globals.db
+nba_teams = globals.nba_teams
 
-
-# User input
-selected_season_id = "2024-25"  
-
-# Connect to MongoDB
-mongo_uri = os.getenv("MONGO_URI")
-
-client = MongoClient(mongo_uri)
-
-db = client["nba_database"]
-
-# Get all NBA teams
-nba_teams = teams.get_teams()
-
-
-for team in nba_teams:
+for team in nba_teams[:2]:
     team_id = team['id']
     team_name = team['full_name']
 

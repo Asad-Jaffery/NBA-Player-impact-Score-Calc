@@ -1,7 +1,8 @@
-from src.transform import config
+import globals
 
-db = config.db
-averages_db = config.averages_db
+# import global variables
+db = globals.db
+averages_db = globals.averages_db
 
 all_stats_min = {}
 all_stats_max = {}

@@ -1,11 +1,13 @@
-from src.transform import config
 from src.transform import mongodb_min_max_finder
+import globals
 
 all_stats_min, all_stats_max = mongodb_min_max_finder.all_stats_min, mongodb_min_max_finder.all_stats_max
 
-db = config.db
-averages_db = config.averages_db
-stat_weight = config.STAT_WEIGHTS
+# import global variables
+db = globals.db
+averages_db = globals.averages_db
+stat_weight = globals.STAT_WEIGHTS
+positive_stats = globals.positive_stats
 
 def getPlayerImpactScore(player): 
     """Calculates the Impact score of a player based on their average stats"""
@@ -15,7 +17,7 @@ def getPlayerImpactScore(player):
     # normalize the player stats (on a 0 - 100 scale)
     normalized_stats = {} 
 
-    for stat in config.positive_stats:
+    for stat in positive_stats:
         if player["avg_stats"][stat] == 0:
             normalized_stats[stat] = 0
         else:

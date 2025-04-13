@@ -1,17 +1,13 @@
 import time
-from pymongo import MongoClient
 from src.scoring.impact_scoring.impact_score_formula import getPlayerImpactScore
-import os
-from dotenv import load_dotenv
+import globals
 
-load_dotenv() 
 
-mongo_uri = os.getenv("MONGO_URI")
-client = MongoClient(mongo_uri)
+client = globals.client
+averages_db = globals.averages_db
+
 
 scores = client["scores"]
-averages_db = client["nba_averages"]
-
 impact_scores = scores["impact_scores"]
 
 # get impact score for every player 

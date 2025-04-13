@@ -1,11 +1,14 @@
 import pandas as pd
-import src.transform.config as config
 import time
+import globals
 
-db = config.db
-averages_db = config.averages_db
 
-nba_teams = config.nba_teams 
+# load global variables
+db = globals.db
+averages_db = globals.averages_db
+nba_teams = globals.nba_teams
+stats_to_count = globals.stats_to_count
+
 
 for team in nba_teams:
     team_name = team['full_name']
@@ -26,7 +29,7 @@ for team in nba_teams:
         all_game_logs.extend(player["game_logs"])
         all_game_log_df = pd.DataFrame(all_game_logs)
         if len(all_game_log_df) > 0 :
-            all_game_log_df = all_game_log_df[config.stats_to_count]
+            all_game_log_df = all_game_log_df[stats_to_count]
         else:
             all_game_log_df = pd.DataFrame()
         player_averages = pd.DataFrame(all_game_log_df).mean().to_dict()
