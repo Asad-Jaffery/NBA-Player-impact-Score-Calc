@@ -4,7 +4,7 @@
 This project is an end-to-end ETL (Extract, Transform, Load) pipeline that ingests, processes, and analyzes NBA player data to compute a custom Impact Score for each player.
 
 ## Why?
-Wanted to be a data eng - so I'm teaching myself😁
+Want to become a data eng - so I'm teaching myself😁
 
 ## How are players scored?
 - Each stat is normalized on a 0–100 scale using league-wide min and max values.
@@ -13,8 +13,8 @@ Wanted to be a data eng - so I'm teaching myself😁
 
 
 ## Dev notes
-Run build script by running `run_pipeline.py` script from inside the `data_pipeline` directory. 
-Note: You'll to connect own MongoDB connection!
+Run build script by running `run_pipeline.py` from inside the `data_pipeline` directory. 
+Note: You'll to connect your own MongoDB connection!
 
 ## The Future
 - Front end (Next.js)
